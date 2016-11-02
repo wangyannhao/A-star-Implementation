@@ -1,0 +1,15 @@
+package aStarAlg;
+
+public class MainTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Map map = new Map();
+		//map.Read_map("D:/Github/Intro2AI/aStarAlg/Output_map.txt");
+		map.generateStartandGoal();
+		aStarSearch search = new aStarSearch(map, new Point(5,5),new Point(10,10));
+		search.findPath();
+		
+	}
+
+}

@@ -1,0 +1,10 @@
+package aStarAlg;
+
+import java.util.List;
+
+public class aStarSearch {
+	public  List<Cell> PathFinding(Map map, Point Start, Point Goal){
+		return null;
+
+	}
+}

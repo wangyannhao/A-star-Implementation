@@ -1,0 +1,84 @@
+package aStarAlg;
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class benchMark {
+	private static List<Map> maps = new ArrayList<Map>();
+	private static List<aStarSearch> astarlist = new ArrayList<aStarSearch>();
+	private static List<aStarWeightedSearch> astarweightedlist = new ArrayList<aStarWeightedSearch>();
+	private static List<uniformCostSearch> uniformlist = new ArrayList<uniformCostSearch>();
+	
+	public static int a_pathlength=0;
+	public static int aw_pathlength=0;
+	public static int u_pathlength=0;
+	
+	public static long a_runningtime=0;
+	public static long aw_runningtime=0;
+	public static long u_runningtime=0;
+	
+	public int a_pathLength=0;
+	public int aw_pathLength=0;
+	public int u_pathLength0;
+	
+	public static double a_pathCost=0;
+	public static double aw_pathCost=0;
+	public static double u_pathCost=0;
+	
+	public static int a_nodeExpanded=0;
+	public static int aw_nodeExpanded=0;
+	public static int u_nodeExpanded=0;
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		for (int i = 0;i < 5;i++){
+			for (int j = 0;j<10;j++){
+				maps.add(new Map());
+				maps.get(maps.size()-1).Read_map((i+1)+"_"+(j+1)+".txt");
+				aStarSearch search_a = new aStarSearch(maps.get(maps.size()-1),maps.get(maps.size()-1).Start,maps.get(maps.size()-1).Goal);
+				aStarWeightedSearch search_aw = new aStarWeightedSearch(maps.get(maps.size()-1),maps.get(maps.size()-1).Start,maps.get(maps.size()-1).Goal,1.25);
+				uniformCostSearch search_u = new uniformCostSearch(maps.get(maps.size()-1),maps.get(maps.size()-1).Start,maps.get(maps.size()-1).Goal);
+				search_a.findPath();
+				search_aw.findPath();
+				//search_u.findPath();
+				astarlist.add(search_a);
+				astarweightedlist.add(search_aw);
+				//uniformlist.add(search_u);
+			}
+		}
+
+		for (int i = 0;i<50;i++){
+			a_pathlength=a_pathlength+astarlist.get(i).pathLength;
+			aw_pathlength=aw_pathlength+astarweightedlist.get(i).pathLength;
+			//u_pathlength = u_pathlength+uniformlist.get(i).pathLength;
+			///
+			a_runningtime=a_runningtime+astarlist.get(i).runningtime;
+			aw_runningtime=aw_runningtime+astarweightedlist.get(i).runningtime;
+			//u_runningtime = u_runningtime+uniformlist.get(i).runningtime;
+			
+			a_pathCost=a_pathCost+astarlist.get(i).pathCost;
+			aw_pathCost=aw_pathCost+astarweightedlist.get(i).pathCost;
+			//u_pathCost=u_pathCost+astarlist.get(i).pathCost;
+			System.out.println(uniformlist.get(i).pathCost);
+			a_nodeExpanded = a_nodeExpanded + astarlist.get(i).closedList.size();
+			aw_nodeExpanded = aw_nodeExpanded + astarweightedlist.get(i).closedList.size();
+			//u_nodeExpanded = u_nodeExpanded + uniformlist.get(i).closedList.size();
+			
+		}
+		
+//		System.out.println("A Star average running time is " + a_runningtime/50);
+//		System.out.println("A Star Weighted average running time is " + aw_runningtime/50);
+//		System.out.println("Uniform average running time is " + u_runningtime/50);
+//		System.out.println("A Star average path length is " + a_pathlength/50);
+//		System.out.println("A Star Weighted average path length is " + aw_pathlength/50);
+//		System.out.println("Uniform average path length is " + u_pathlength/50);
+//		System.out.println("A Star average path cost is " + a_pathCost/50);
+//		System.out.println("A Star Weighted average path cost is " + aw_pathCost/50);
+//		System.out.println("Uniform average path cost is " + u_pathCost/50);
+//		System.out.println("A Star average node expanded is " + a_nodeExpanded/50);
+//		System.out.println("A Star Weighted average node expanded is " + aw_nodeExpanded/50);
+//		System.out.println("Uniform average  node expanded is " + u_nodeExpanded/50);
+	}
+	
+
+}

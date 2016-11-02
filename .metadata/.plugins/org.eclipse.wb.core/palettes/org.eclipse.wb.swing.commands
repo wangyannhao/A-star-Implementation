@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commands>
+	<addComponent
+		id="custom_1475476382133"
+		name="Screen"
+		visible="true"
+		class="aStarAlg.Screen"
+		category="org.eclipse.wb.swing.containers"/>
+</commands>

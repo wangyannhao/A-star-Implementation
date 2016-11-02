@@ -1,0 +1,9 @@
+package aStarAlg;
+
+import java.util.List;
+
+public class uniformCostSearch extends PathFinding{
+	public  List<Cell> PathFinding(Map map, Point Start, Point Goal){
+		
+	}
+}

@@ -1,0 +1,5 @@
+package aStarAlg;
+
+public class DrawPath_astarweighted {
+
+}

@@ -1,0 +1,36 @@
+package aStarAlg;
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class benchMark {
+	private static List<Map> maps = new ArrayList<Map>();
+	private static List<aStarSearch> astarlist = new ArrayList<aStarSearch>();
+	private static List<aStarWeightedSearch> astarweightedlist = new ArrayList<aStarWeightedSearch>();
+	private static List<uniformCostSearch> uniformlist = new ArrayList<uniformCostSearch>();
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		for (int i = 0;i < 5;i++){
+			for (int j = 0;j<10;j++){
+				maps.add(new Map());
+				maps.get(maps.size()-1).Read_map((i+1)+"_"+(j+1)+".txt");
+				aStarSearch search_a = new aStarSearch(maps.get(maps.size()-1),maps.get(maps.size()-1).Start,maps.get(maps.size()-1).Goal);
+				aStarWeightedSearch search_aw = new aStarWeightedSearch(maps.get(maps.size()-1),maps.get(maps.size()-1).Start,maps.get(maps.size()-1).Goal,1.25);
+				uniformCostSearch search_u = new uniformCostSearch(maps.get(maps.size()-1),maps.get(maps.size()-1).Start,maps.get(maps.size()-1).Goal);
+				search_a.findPath();
+				search_aw.findPath();
+				search_u.findPath();
+				astarlist.add(search_a);
+				astarweightedlist.add(search_aw);
+				uniformlist.add(search_u);
+			}
+		}
+		
+		
+	}
+	
+
+}

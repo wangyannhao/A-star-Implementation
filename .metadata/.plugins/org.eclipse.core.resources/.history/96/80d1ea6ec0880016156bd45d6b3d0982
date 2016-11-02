@@ -1,0 +1,107 @@
+package aStarAlg;
+
+import java.util.List;
+
+public class uniformCostSearch extends PathFinding{
+	public  List<cell> PathFinding(Map map, Point Start, Point Goal){
+		return null;
+		
+	}
+	private double getgCost(Point x , Point y){
+		//=====================================================move diagonally=================================================
+		if (Math.abs(x.x-y.x)==1 && Math.abs(x.y-y.y)==1){
+			//*******from 2 to others*********
+			//// travel between hard to traverse cells
+			if(map.cell[x.x][x.y].type=='2'&& map.cell[y.x][y.y].type=='2') return Math.sqrt(8);
+			//// travel from htt to unblocked
+			if(map.cell[x.x][x.y].type=='2'&& map.cell[y.x][y.y].type=='1') return Math.sqrt(2)/2+Math.sqrt(8)/2;
+			//// travel from htt to unblocked highway
+			if(map.cell[x.x][x.y].type=='2'&& map.cell[y.x][y.y].type=='a') return Math.sqrt(2)/2+Math.sqrt(8)/2;
+			//// travel from htt to htt highway
+			if(map.cell[x.x][x.y].type=='2'&& map.cell[y.x][y.y].type=='b') return Math.sqrt(8);
+			//// travel from htt to blocked
+			if(map.cell[x.x][x.y].type=='2'&& map.cell[y.x][y.y].type=='0') return 1000;
+			//*******from 1 to others*********
+			//// travel between hard to traverse cells
+			if(map.cell[x.x][x.y].type=='1'&& map.cell[y.x][y.y].type=='2') return Math.sqrt(2)/2+Math.sqrt(8)/2;
+			//// travel from htt to unblocked
+			if(map.cell[x.x][x.y].type=='1'&& map.cell[y.x][y.y].type=='1') return Math.sqrt(2);
+			//// travel from htt to unblocked highway
+			if(map.cell[x.x][x.y].type=='1'&& map.cell[y.x][y.y].type=='a') return Math.sqrt(2);
+			//// travel from htt to htt highway
+			if(map.cell[x.x][x.y].type=='1'&& map.cell[y.x][y.y].type=='b') return Math.sqrt(2)/2+Math.sqrt(8)/2;
+			//// travel from htt to blocked
+			if(map.cell[x.x][x.y].type=='1'&& map.cell[y.x][y.y].type=='0') return 1000;
+			//*******from b to others*********
+			//// travel between hard to traverse cells
+			if(map.cell[x.x][x.y].type=='b'&& map.cell[y.x][y.y].type=='2') return Math.sqrt(8);
+			//// travel from htt to unblocked
+			if(map.cell[x.x][x.y].type=='b'&& map.cell[y.x][y.y].type=='1') return Math.sqrt(2)/2+Math.sqrt(8)/2;
+			//// travel from htt to unblocked highway
+			if(map.cell[x.x][x.y].type=='b'&& map.cell[y.x][y.y].type=='a') return Math.sqrt(2)/2+Math.sqrt(8)/2;
+			//// travel from htt to htt highway
+			if(map.cell[x.x][x.y].type=='b'&& map.cell[y.x][y.y].type=='b') return Math.sqrt(8);
+			//// travel from htt to blocked
+			if(map.cell[x.x][x.y].type=='b'&& map.cell[y.x][y.y].type=='0') return 1000;
+			//*******from a to others*********
+			//// travel between hard to traverse map.cells
+			if(map.cell[x.x][x.y].type=='a'&& map.cell[y.x][y.y].type=='2') return Math.sqrt(2)/2+Math.sqrt(8)/2;
+			//// travel from htt to unblocked
+			if(map.cell[x.x][x.y].type=='a'&& map.cell[y.x][y.y].type=='1') return Math.sqrt(2);
+			//// travel from htt to unblocked highway
+			if(map.cell[x.x][x.y].type=='a'&& map.cell[y.x][y.y].type=='a') return Math.sqrt(2);
+			//// travel from htt to htt highway
+			if(map.cell[x.x][x.y].type=='a'&& map.cell[y.x][y.y].type=='b') return Math.sqrt(2)/2+Math.sqrt(8)/2;
+			//// travel from htt to blocked
+			if(map.cell[x.x][x.y].type=='a'&& map.cell[y.x][y.y].type=='0') return 1000;		
+		}else{
+			//==========================================move horizontally or vertically=================================================
+			//*******from 2 to others*********
+			//// travel between hard to traverse map.cells
+			if(map.cell[x.x][x.y].type=='2'&& map.cell[y.x][y.y].type=='2') return 2;
+			//// travel from htt to unblocked
+			if(map.cell[x.x][x.y].type=='2'&& map.cell[y.x][y.y].type=='1') return 1.5;
+			//// travel from htt to unblocked highway
+			if(map.cell[x.x][x.y].type=='2'&& map.cell[y.x][y.y].type=='a') return 1.5;
+			//// travel from htt to htt highway
+			if(map.cell[x.x][x.y].type=='2'&& map.cell[y.x][y.y].type=='b') return 2;
+			//// travel from htt to blocked
+			if(map.cell[x.x][x.y].type=='2'&& map.cell[y.x][y.y].type=='0') return 1000;
+			//*******from 1 to others*********
+			//// travel between hard to traverse map.cells
+			if(map.cell[x.x][x.y].type=='1'&& map.cell[y.x][y.y].type=='2') return 1.5;
+			//// travel from htt to unblocked
+			if(map.cell[x.x][x.y].type=='1'&& map.cell[y.x][y.y].type=='1') return Math.sqrt(2);
+			//// travel from htt to unblocked highway
+			if(map.cell[x.x][x.y].type=='1'&& map.cell[y.x][y.y].type=='a') return Math.sqrt(2);
+			//// travel from htt to htt highway
+			if(map.cell[x.x][x.y].type=='1'&& map.cell[y.x][y.y].type=='b') return 1.5;
+			//// travel from htt to blocked
+			if(map.cell[x.x][x.y].type=='1'&& map.cell[y.x][y.y].type=='0') return 1000;
+			//*******from b to others*********
+			//// travel between hard to traverse map.cells
+			if(map.cell[x.x][x.y].type=='b'&& map.cell[y.x][y.y].type=='2') return 2;
+			//// travel from htt to unblocked
+			if(map.cell[x.x][x.y].type=='b'&& map.cell[y.x][y.y].type=='1') return 1.5;
+			//// travel from htt to unblocked highway
+			if(map.cell[x.x][x.y].type=='b'&& map.cell[y.x][y.y].type=='a') return 1.5;
+			//// travel from htt to htt highway
+			if(map.cell[x.x][x.y].type=='b'&& map.cell[y.x][y.y].type=='b') return 2;
+			//// travel from htt to blocked
+			if(map.cell[x.x][x.y].type=='b'&& map.cell[y.x][y.y].type=='0') return 1000;
+			//*******from a to others*********
+			//// travel between hard to traverse map.cells
+			if(map.cell[x.x][x.y].type=='a'&& map.cell[y.x][y.y].type=='2') return 1.5;
+			//// travel from htt to unblocked
+			if(map.cell[x.x][x.y].type=='a'&& map.cell[y.x][y.y].type=='1') return Math.sqrt(2);
+			//// travel from htt to unblocked highway
+			if(map.cell[x.x][x.y].type=='a'&& map.cell[y.x][y.y].type=='a') return Math.sqrt(2);
+			//// travel from htt to htt highway
+			if(map.cell[x.x][x.y].type=='a'&& map.cell[y.x][y.y].type=='b') return 1.5;
+			//// travel from htt to blocked
+			if(map.cell[x.x][x.y].type=='a'&& map.cell[y.x][y.y].type=='0') return 1000;		
+		}
+
+		return 1000;
+	}
+}

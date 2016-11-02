@@ -1,0 +1,2 @@
+my_integer = input("Type in your first number")
+print (my_integer,type(my_integer))

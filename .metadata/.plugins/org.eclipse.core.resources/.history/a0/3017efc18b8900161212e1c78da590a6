@@ -1,0 +1,78 @@
+
+package aStarAlg;
+import java.awt.Color;
+import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.util.List;
+
+
+
+public class DrawPath_astar extends JPanel{
+	/**
+	 * 
+	 */
+	public Map map;
+	private static final long serialVersionUID = 1L;
+	public DrawPath_astar (Map m)
+	{
+		map = m;
+	}
+	public void paint(Graphics g)
+	{
+		
+		//map.generateMap();
+		aStarSearch search = new aStarSearch(map, map.Start,map.Goal);
+		List<Cell> path = search.findPath();
+		
+		for (int i = 0;i<160;i++)
+    	{
+    		for (int j = 0;j<120;j++)
+    		{
+    			if (map.cell[i][j].type == '1')
+    			{
+    				g.setColor(Color.white);
+    				g.fillRect(5*i, 5*j, 5, 5);
+    				g.setColor(Color.lightGray);
+    				g.drawRect(5*i, 5*j, 5, 5);
+
+    			}
+    			else if (map.cell[i][j].type == '2')
+    			{
+    				g.setColor(Color.gray);
+    				g.fillRect(5*i, 5*j, 5,5);
+    			}
+    			else if (map.cell[i][j].type == 'a')
+    			{
+    				g.setColor(new Color(72,170,237));
+    				g.fillRect(5*i, 5*j, 5,5);
+    				
+    			}
+    			else if (map.cell[i][j].type == 'b')
+    			{
+    				g.setColor(new Color(53,80,159));
+    				g.fillRect(5*i, 5*j, 5,5);
+    			}
+    			else if (map.cell[i][j].type == '0')
+    			{
+    				g.setColor(Color.black);
+    				g.fillRect(5*i, 5*j, 5,5);
+    			}
+    		}
+    	}
+		for (int i =1; i< search.openList.position;i++){
+			g.setColor(Color.orange);
+			g.fillRect(5*search.openList.bheap[i].getx(), 5*search.openList.bheap[i].gety(), 5,5);
+		}
+		for (int i = 0; i< search.closedList.size();i++){
+			g.setColor(Color.green);
+			g.fillRect(5*search.closedList.get(i).getx(), 5*search.closedList.get(i).gety(), 5,5);
+		}
+		
+		for (int i = 0; i< path.size();i++){
+			g.setColor(Color.red);
+			g.fillRect(5*path.get(i).coordinateX, 5*path.get(i).coordinateY, 5,5);
+		}
+		
+
+	}
+}

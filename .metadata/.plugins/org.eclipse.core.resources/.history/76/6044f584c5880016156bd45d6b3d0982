@@ -1,0 +1,18 @@
+package aStarAlg;
+
+import java.util.List;
+
+public class aStarWeightedSearch extends PathFinding{
+
+	public aStarWeightedSearch(Map m, Point s, Point g, double w) {
+		super(m, s, g, w);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public double insertCost(Cell cellat) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

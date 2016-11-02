@@ -1,0 +1,20 @@
+package aStarAlg;
+
+import java.util.List;
+
+public class uniformCostSearch extends PathFinding{
+
+
+	public uniformCostSearch(Map m, Point s, Point g) {
+		super(m, s, g);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public double insertCost(Cell cellat) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+}
